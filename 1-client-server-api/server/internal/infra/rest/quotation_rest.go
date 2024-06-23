@@ -13,19 +13,19 @@ import (
 )
 
 type (
-	CotacaoRest interface {
-		ObterCotacao() (*dto.CotacaoDTO, error)
+	QuotationRest interface {
+		GetQuotation() (*dto.QuotationDTO, error)
 	}
 
-	cotacaoRest struct {
+	quotationRest struct {
 	}
 )
 
-func NewCotacaoRest() CotacaoRest {
-	return &cotacaoRest{}
+func NewQuotationRest() QuotationRest {
+	return &quotationRest{}
 }
 
-func (r *cotacaoRest) ObterCotacao() (*dto.CotacaoDTO, error) {
+func (r *quotationRest) GetQuotation() (*dto.QuotationDTO, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Millisecond)
 	defer cancel()
 
@@ -57,13 +57,13 @@ func (r *cotacaoRest) ObterCotacao() (*dto.CotacaoDTO, error) {
 		return nil, errors.New(fmt.Sprintf("Erro ao ler a cotação: %s", err.Error()))
 	}
 
-	var cotacao dto.CotacaoDTO
-	err = json.Unmarshal(body, &cotacao)
+	var quotation dto.QuotationDTO
+	err = json.Unmarshal(body, &quotation)
 	if err != nil {
 		return nil, errors.New(fmt.Sprintf("Erro de conversão ao ler a cotação: %s", err.Error()))
 	}
 
-	return &cotacao, nil
+	return &quotation, nil
 }
 
 func closeBody(resp *http.Response) error {

@@ -3,7 +3,7 @@ package entities
 import "gorm.io/gorm"
 
 type (
-	CotacaoEntity struct {
+	QuotationEntity struct {
 		ID         int `gorm:"primaryKey"`
 		Code       string
 		Codein     string

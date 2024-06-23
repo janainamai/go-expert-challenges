@@ -1,7 +1,7 @@
 package dto
 
 type (
-	CotacaoDTO struct {
+	QuotationDTO struct {
 		ContentDTO ContentDTO `json:"usdbrl"`
 	}
 

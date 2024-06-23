@@ -1,6 +1,6 @@
 package domain
 
-type Cotacao struct {
+type Quotation struct {
 	ID         int    `json:"id"`
 	Code       string `json:"code"`
 	Codein     string `json:"codein"`

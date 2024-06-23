@@ -18,15 +18,15 @@ import (
 )
 
 type Resources struct {
-	CotacaoHandler handler.CotacaoHandler
+	QuotationHandler handler.QuotationHandler
 }
 
 func main() {
 	r := setupResources()
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/cotacao", r.CotacaoHandler.ObterCotacaoAtual)
-	mux.HandleFunc("/cotacao/audit", r.CotacaoHandler.ObterCotacoesRegistradas)
+	mux.HandleFunc("/cotacao", r.QuotationHandler.GetCurrentQuotation)
+	mux.HandleFunc("/cotacao/audit", r.QuotationHandler.GetRegistereQuotations)
 
 	wrappedMux := loggingMiddleware(mux)
 
@@ -61,17 +61,17 @@ func main() {
 }
 
 func setupResources() *Resources {
-	cotacaoRest := rest.NewCotacaoRest()
-	cotacaoRepository := database.NewCotacaoRepository()
+	quotationRest := rest.NewQuotationRest()
+	quotationRepository := database.NewQuotationRepository()
 
-	orchestrator := infra.NewCotacaoOrchestrator(cotacaoRepository, cotacaoRest)
+	orchestrator := infra.NewQuotationOrchestrator(quotationRepository, quotationRest)
 
-	cotacaoCore := core.NewCotacaoCore(orchestrator)
+	quotationCore := core.NewQuotationCore(orchestrator)
 
-	cotacaoHandler := handler.NewCotacaoHandler(cotacaoCore)
+	quotationHandler := handler.NewQuotationHandler(quotationCore)
 
 	return &Resources{
-		CotacaoHandler: cotacaoHandler,
+		QuotationHandler: quotationHandler,
 	}
 }
 

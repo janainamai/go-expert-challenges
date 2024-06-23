@@ -12,25 +12,24 @@ import (
 	"time"
 )
 
-type CotacaoResponse struct {
+type QuotationResponse struct {
 	Bid string `json:"bid"`
 }
 
 func main() {
-	cotacao, err := obterCotacao()
+	quotation, err := getQuotation()
 	if err != nil {
 		panic(err)
 	}
 
-	err = registrarCotacao(cotacao)
+	err = SaveQuotation(quotation)
 	if err != nil {
 		panic(err)
 	}
 }
 
-func obterCotacao() (*CotacaoResponse, error) {
-	//ctx, cancel := context.WithTimeout(context.Background(), 300*time.Millisecond)
-	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Millisecond)
+func getQuotation() (*QuotationResponse, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 300*time.Millisecond)
 	defer cancel()
 
 	req, err := http.NewRequestWithContext(ctx, "GET", "http://localhost:8080/cotacao", nil)
@@ -63,14 +62,14 @@ func obterCotacao() (*CotacaoResponse, error) {
 		return nil, err
 	}
 
-	var cotacao CotacaoResponse
-	err = json.Unmarshal(body, &cotacao)
+	var quotation QuotationResponse
+	err = json.Unmarshal(body, &quotation)
 	if err != nil {
 		fmt.Printf("Erro ao ler resultado da cotação: %s", err.Error())
 		return nil, err
 	}
 
-	return &cotacao, nil
+	return &quotation, nil
 }
 
 func closeBody(resp *http.Response) {
@@ -81,27 +80,27 @@ func closeBody(resp *http.Response) {
 	}
 }
 
-func registrarCotacao(cotacao *CotacaoResponse) error {
-	pathFile := "../cotacao.txt"
+func SaveQuotation(quotation *QuotationResponse) error {
+	filePath := "../quotation.txt"
 
-	if _, err := os.Stat(pathFile); os.IsNotExist(err) {
-		pathFile = "./cotacao.txt"
+	if _, err := os.Stat(filePath); os.IsNotExist(err) {
+		filePath = "./quotation.txt"
 	}
 
-	arquivo, err := os.Open(pathFile)
+	file, err := os.Open(filePath)
 	if err != nil {
-		fmt.Printf("Erro abrir arquivo cotacao.txt para registro: %s", err.Error())
+		fmt.Printf("Erro abrir file quotation.txt para registro: %s", err.Error())
 		return err
 	}
-	defer closeFile(arquivo)
+	defer closeFile(file)
 
-	err = os.WriteFile(pathFile, []byte(fmt.Sprintf("Dólar: %s\n", cotacao.Bid)), os.ModePerm)
+	err = os.WriteFile(filePath, []byte(fmt.Sprintf("Dólar: %s\n", quotation.Bid)), os.ModePerm)
 	if err != nil {
-		fmt.Printf("Erro ao registrar cotação no arquivo cotacao.txt: %s", err.Error())
+		fmt.Printf("Erro ao registrar cotação no file quotation.txt: %s", err.Error())
 		return err
 	}
 
-	fmt.Printf("Cotação do dólar registrada com sucesso no arquivo cotacao.txt")
+	fmt.Printf("Cotação do dólar registrada com sucesso no file quotation.txt")
 	return nil
 }
 
