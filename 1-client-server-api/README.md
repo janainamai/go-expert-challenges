@@ -1,7 +1,6 @@
 # Desafio 1 - Client Server API
 
 ## Descrição do desafio
-
 Entregar dois sistemas em Go:
 - `client.go`
 - `server.go`
@@ -19,6 +18,16 @@ Entregar dois sistemas em Go:
 - O timeout máximo para conseguir persistir os dados no banco deverá ser de 10ms.
 - Se ocorrer erro de timeout, conforme configurado no context, deverá ser registrado nos logs.
 - O endpoint necessário gerado pelo `server.go` para este desafio deverá ser: `/cotacao` e a porta a ser utilizada pelo servidor HTTP deverá ser a `8080`.
+
+## Arquitetura do sistema Client
+
+### Divisão de camadas principais e suas responsabilidades
+O sistema foi dividido em três camadas principais: handler, core e infra.
+- Handler: camada que processa a entrada de dados que atualmente são requisições de protocolo http.
+- Core: camada responsável pela lógica de negócio, recebe dados do handler e interage com a camada de infraestrutura através de contratos de interface definidos no package `ports`.
+- Infra: camada que orquestra a interação do sistema com infrastruturas externas, atualmente interage com um database e uma aplicação através de protocolo http.
+  - Database SQLITE: registra cotações que foram obtidas pelo sistema.
+  - Aplicação `economia.awesomeapi.com.br`: retorna a cotação atual do Dólar.
 
 ## Executando o sistema localmente
 1. Executar a aplicação `server.go`
