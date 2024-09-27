@@ -1,8 +1,6 @@
 package domain
 
 import (
-	"fmt"
-
 	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/shared/dto"
 )
 
@@ -18,7 +16,6 @@ type (
 func (o *Order) Validate() *dto.Error {
 	if o.ID == "" {
 		err := dto.InitError().WithDetail("invalid id")
-		fmt.Println(err)
 
 		return err
 	}

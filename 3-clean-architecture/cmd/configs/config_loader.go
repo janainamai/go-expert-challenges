@@ -2,9 +2,9 @@ package configs
 
 import (
 	"fmt"
-	"log"
 	"os"
 
+	"github.com/sirupsen/logrus"
 	"gopkg.in/yaml.v3"
 )
 
@@ -33,6 +33,6 @@ func getScope() string {
 		scope = "local"
 	}
 
-	log.Println("Scope: ", scope)
+	logrus.Infof("Scope: %s", scope)
 	return scope
 }

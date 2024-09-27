@@ -9,6 +9,7 @@ import (
 	"github.com/janainamai/go-expert-challenges/3-clean-architecture/cmd/configs"
 	"github.com/janainamai/go-expert-challenges/3-clean-architecture/cmd/resources"
 	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/infra/graph"
+	"github.com/sirupsen/logrus"
 )
 
 func InitServer(cfg *configs.Config, resources *resources.Resources) {
@@ -20,7 +21,7 @@ func InitServer(cfg *configs.Config, resources *resources.Resources) {
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
 
-	fmt.Printf("GraphQL Server - Listening on port: %s\n", cfg.GraphServer.Port)
+	logrus.Infof("GraphQL Server - Listening on port: %s\n", cfg.GraphServer.Port)
 	if err := http.ListenAndServe(":"+cfg.GraphServer.Port, nil); err != nil {
 		panic(fmt.Sprintf("error initing graphql server: %s", err.Error()))
 	}

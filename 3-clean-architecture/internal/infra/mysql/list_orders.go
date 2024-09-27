@@ -7,6 +7,7 @@ import (
 	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/infra/mysql/entity"
 	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/infra/mysql/setup"
 	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/shared/dto"
+	"github.com/sirupsen/logrus"
 )
 
 type (
@@ -28,6 +29,7 @@ func NewListOrdersMySQL(mysql *setup.MySQL) ListOrdersMySQL {
 func (i *listOrdersMySQL) List(ctx context.Context) ([]*entity.Order, *dto.Error) {
 	rows, err := i.mysql.DB.Query("SELECT id, price, tax, final_price FROM orders")
 	if err != nil {
+		logrus.Errorf("error while query orders: %s", err.Error())
 		return nil, dto.InitError().WithDetail(err.Error())
 	}
 
@@ -36,6 +38,7 @@ func (i *listOrdersMySQL) List(ctx context.Context) ([]*entity.Order, *dto.Error
 		var order entity.Order
 		err = rows.Scan(&order.ID, &order.Price, &order.Tax, &order.FinalPrice)
 		if err != nil {
+			logrus.Errorf("error while scan order fields: %s", err.Error())
 			return nil, dto.InitError().WithDetail(fmt.Sprintf("error scanning rows: %s", err.Error()))
 		}
 

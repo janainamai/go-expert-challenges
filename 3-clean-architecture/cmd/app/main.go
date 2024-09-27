@@ -15,6 +15,8 @@ func main() {
 
 	resources := resources.LoadResources(cfg)
 
+	configs.SetupLogging(cfg.LogLevel)
+
 	wg := sync.WaitGroup{}
 	wg.Add(4)
 

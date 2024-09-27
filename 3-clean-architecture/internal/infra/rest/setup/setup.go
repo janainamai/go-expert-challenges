@@ -8,6 +8,7 @@ import (
 	"github.com/go-chi/chi/middleware"
 	"github.com/janainamai/go-expert-challenges/3-clean-architecture/cmd/configs"
 	"github.com/janainamai/go-expert-challenges/3-clean-architecture/cmd/resources"
+	"github.com/sirupsen/logrus"
 )
 
 func InitServer(cfg *configs.Config, resources *resources.Resources) {
@@ -17,7 +18,7 @@ func InitServer(cfg *configs.Config, resources *resources.Resources) {
 	r.Post("/order", resources.CreateOrderRestHandler.Create)
 	r.Get("/order", resources.ListOrdersRestHandler.List)
 
-	fmt.Printf("REST Server - Listening on port: %s\n", cfg.RestServer.Port)
+	logrus.Infof("REST Server - Listening on port: %s\n", cfg.RestServer.Port)
 	err := http.ListenAndServe(fmt.Sprintf(":%s", cfg.RestServer.Port), r)
 	if err != nil {
 		panic(fmt.Sprintf("error initing rest server: %s", err.Error()))
