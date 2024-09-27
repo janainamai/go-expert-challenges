@@ -7,3 +7,9 @@ database:
   port: 3306
   user: "root"
   password: "root"
+
+rest-server:
+  port: "3000"
+
+grpc-service:
+  port: "50051"

@@ -6,16 +6,20 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/cmd/configs"
 	"github.com/janainamai/go-expert-challenges/3-clean-architecture/cmd/resources"
 )
 
-func InitServer(resources *resources.Resources) {
+func InitServer(cfg *configs.Config, resources *resources.Resources) {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
 	r.Post("/order", resources.SaveOrderRestHandler.Create)
 	r.Get("/order", resources.ListOrdersRestHandler.List)
 
-	fmt.Printf("REST Server - Listening on port: %d\n", 3000)
-	http.ListenAndServe(":3000", r)
+	fmt.Printf("REST Server - Listening on port: %s\n", cfg.RestServer.Port)
+	err := http.ListenAndServe(fmt.Sprintf(":%s", cfg.RestServer.Port), r)
+	if err != nil {
+		panic(fmt.Sprintf("error initing rest server: %s", err.Error()))
+	}
 }

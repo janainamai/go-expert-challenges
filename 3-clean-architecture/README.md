@@ -18,6 +18,18 @@ Esta listagem precisa ser feita com:
 - Execute via terminal o arquivo docker: `docker-compose up -d`
 - Executar o projeto via terminal: `go run cmd/app/main.go`
 - Testar a aplicação utilizando as 3 formas:
-    - Rest:
-    - gRPC:
+    - Rest: executar requisições no arquivo `rest.http` que está na pasta `test`
+    - gRPC: utilizar Evans para interagir com as APIs
+        - Instalar via terminal: `brew install evans`
+        - Executar comandos para interagir:
+            - `evans -r repl`
+            - `package pb`
+            - `service OrderService`
+            - `call CreateOrder` ou `call ListOrders`
+            - `ctrl + d` para sair
     - GraphQL:
+
+
+### Dev instructions
+
+Para gerar código grpc, executar no terminal: `make protoc-gen`
