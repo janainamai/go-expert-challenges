@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/janainamai/go-expert-challenges/cmd/configs"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/cmd/configs"
 )
 
 type (

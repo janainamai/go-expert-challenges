@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/janainamai/go-expert-challenges/internal/shared/dto"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/shared/dto"
 )
 
 func Encode(value interface{}) ([]byte, *dto.Error) {

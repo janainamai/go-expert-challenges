@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-	"github.com/janainamai/go-expert-challenges/cmd/resources"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/cmd/resources"
 )
 
 func InitServer(resources *resources.Resources) {

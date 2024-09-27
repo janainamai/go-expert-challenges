@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/google/uuid"
-	"github.com/janainamai/go-expert-challenges/internal/entity/domain"
-	"github.com/janainamai/go-expert-challenges/internal/shared/dto"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/entity/domain"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/shared/dto"
 )
 
 type (

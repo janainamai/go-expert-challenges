@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/janainamai/go-expert-challenges/internal/infra/mysql/entity"
-	"github.com/janainamai/go-expert-challenges/internal/infra/mysql/setup"
-	"github.com/janainamai/go-expert-challenges/internal/shared/dto"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/infra/mysql/entity"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/infra/mysql/setup"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/shared/dto"
 )
 
 type (

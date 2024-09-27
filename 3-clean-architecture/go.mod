@@ -1,4 +1,4 @@
-module github.com/janainamai/go-expert-challenges
+module github.com/janainamai/go-expert-challenges/3-clean-architecture
 
 go 1.22.3
 

@@ -1,12 +1,12 @@
 package resources
 
 import (
-	"github.com/janainamai/go-expert-challenges/cmd/configs"
-	"github.com/janainamai/go-expert-challenges/internal/entity/usecase"
-	"github.com/janainamai/go-expert-challenges/internal/entity/usecase/gateway"
-	"github.com/janainamai/go-expert-challenges/internal/infra/mysql"
-	setupMySQL "github.com/janainamai/go-expert-challenges/internal/infra/mysql/setup"
-	"github.com/janainamai/go-expert-challenges/internal/infra/rest"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/cmd/configs"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/entity/usecase"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/entity/usecase/gateway"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/infra/mysql"
+	setupMySQL "github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/infra/mysql/setup"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/infra/rest"
 )
 
 type (

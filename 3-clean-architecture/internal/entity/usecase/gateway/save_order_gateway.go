@@ -3,11 +3,11 @@ package gateway
 import (
 	"context"
 
-	"github.com/janainamai/go-expert-challenges/internal/entity/domain"
-	"github.com/janainamai/go-expert-challenges/internal/entity/usecase"
-	"github.com/janainamai/go-expert-challenges/internal/infra/mysql"
-	"github.com/janainamai/go-expert-challenges/internal/infra/mysql/entity"
-	"github.com/janainamai/go-expert-challenges/internal/shared/dto"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/entity/domain"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/entity/usecase"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/infra/mysql"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/infra/mysql/entity"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/shared/dto"
 )
 
 type (

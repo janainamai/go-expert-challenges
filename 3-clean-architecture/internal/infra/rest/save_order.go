@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/janainamai/go-expert-challenges/internal/entity/domain"
-	"github.com/janainamai/go-expert-challenges/internal/entity/usecase"
-	"github.com/janainamai/go-expert-challenges/internal/infra/rest/shared"
-	"github.com/janainamai/go-expert-challenges/internal/shared/dto"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/entity/domain"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/entity/usecase"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/infra/rest/shared"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/shared/dto"
 )
 
 type (

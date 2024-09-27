@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/janainamai/go-expert-challenges/internal/shared/dto"
+	"github.com/janainamai/go-expert-challenges/3-clean-architecture/internal/shared/dto"
 )
 
 func Decode(r io.ReadCloser, request interface{}) *dto.Error {
