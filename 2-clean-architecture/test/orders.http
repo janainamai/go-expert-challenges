@@ -1,0 +1,13 @@
+POST http://localhost:3000/order
+Content-Type: application/json
+
+{
+    "price": 1500,
+    "tax": 100
+}
+
+###
+
+GET http://localhost:3000/order
+
+###
