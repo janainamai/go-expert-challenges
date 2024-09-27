@@ -6,6 +6,7 @@ type (
 		Database    Database    `yaml:"database"`
 		RestServer  RestServer  `yaml:"rest-server"`
 		GrpcService GrpcService `yaml:"grpc-service"`
+		GraphServer GraphServer `yaml:"graph-server"`
 	}
 
 	Database struct {
@@ -22,6 +23,10 @@ type (
 	}
 
 	GrpcService struct {
+		Port string `yaml:"port"`
+	}
+
+	GraphServer struct {
 		Port string `yaml:"port"`
 	}
 )

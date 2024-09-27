@@ -22,9 +22,9 @@ func InitService(cfg *configs.Config, resources *resources.Resources) {
 		panic(err)
 	}
 
-	fmt.Printf("gRPC Service - Listening on port: %s\n", cfg.GrpcService.Port)
+	fmt.Printf("gRPC Server - Listening on port: %s\n", cfg.GrpcService.Port)
 	if err := server.Serve(lis); err != nil {
-		panic(fmt.Sprintf("error initing grpc service: %s", err.Error()))
+		panic(fmt.Sprintf("error initing grpc server: %s", err.Error()))
 	}
 
 }

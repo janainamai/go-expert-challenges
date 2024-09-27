@@ -17,6 +17,9 @@ type (
 		ListOrdersRestHandler rest.ListOrdersRestHandler
 
 		OrderGrpcService pb.OrderServiceServer
+
+		SaveOrderUseCase  usecase.SaveOrderUseCaseInterface
+		ListOrdersUseCase usecase.ListOrdersUseCaseInterface
 	}
 )
 
@@ -47,5 +50,8 @@ func LoadResources(cfg *configs.Config) *Resources {
 		ListOrdersRestHandler: *listOrdersRest,
 
 		OrderGrpcService: orderGrpc,
+
+		SaveOrderUseCase:  saveOrderUseCase,
+		ListOrdersUseCase: listOrdersUseCase,
 	}
 }

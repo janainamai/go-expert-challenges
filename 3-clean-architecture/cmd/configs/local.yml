@@ -13,3 +13,6 @@ rest-server:
 
 grpc-service:
   port: "50051"
+
+graph-server:
+  port: "8080"
