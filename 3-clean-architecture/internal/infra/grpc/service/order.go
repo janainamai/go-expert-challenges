@@ -11,11 +11,11 @@ import (
 
 type orderService struct {
 	pb.UnimplementedOrderServiceServer // implementation for not implemented funcs
-	createOrderUsecase                 usecase.SaveOrderUseCaseInterface
+	createOrderUsecase                 usecase.CreateOrderUseCaseInterface
 	listOrdersUsecase                  usecase.ListOrdersUseCaseInterface
 }
 
-func NewOrdeGrpcService(createOrderUsecase usecase.SaveOrderUseCaseInterface, listOrdersUsecase usecase.ListOrdersUseCaseInterface) pb.OrderServiceServer {
+func NewOrdeGrpcService(createOrderUsecase usecase.CreateOrderUseCaseInterface, listOrdersUsecase usecase.ListOrdersUseCaseInterface) pb.OrderServiceServer {
 	return &orderService{
 		createOrderUsecase: createOrderUsecase,
 		listOrdersUsecase:  listOrdersUsecase,
@@ -28,7 +28,7 @@ func (c *orderService) CreateOrder(ctx context.Context, request *pb.CreateOrderR
 		Tax:   float64(request.Tax),
 	}
 
-	order, err := c.createOrderUsecase.Save(ctx, domain)
+	order, err := c.createOrderUsecase.Create(ctx, domain)
 	if err != nil {
 		return nil, fmt.Errorf("error: %s, detail: %s", err.Title, err.Detail)
 	}

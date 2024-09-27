@@ -11,19 +11,19 @@ import (
 
 type (
 	gatewayList struct {
-		mysql mysql.ListOrdersMySQL
+		listOrdersMySQL mysql.ListOrdersMySQL
 	}
 )
 
-func NewListOrdersGateway(mysql mysql.ListOrdersMySQL) usecase.ListOrdersInfraInterface {
+func NewListOrdersGateway(listOrdersMySQL mysql.ListOrdersMySQL) usecase.ListOrdersInfraInterface {
 	return &gatewayList{
-		mysql: mysql,
+		listOrdersMySQL: listOrdersMySQL,
 	}
 }
 
 func (i *gatewayList) List(ctx context.Context) ([]*domain.Order, *dto.Error) {
 
-	entities, err := i.mysql.List(ctx)
+	entities, err := i.listOrdersMySQL.List(ctx)
 	if err != nil {
 		return nil, err
 	}

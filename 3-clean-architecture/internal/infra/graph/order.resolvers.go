@@ -19,7 +19,7 @@ func (r *mutationResolver) CreateOrder(ctx context.Context, input model.NewOrder
 		Tax:   input.Tax,
 	}
 
-	order, err := r.SaveOrderUseCase.Save(ctx, domain)
+	order, err := r.CreateOrderUseCase.Create(ctx, domain)
 	if err != nil {
 		return nil, fmt.Errorf("error: %s, detail: %s", err.Title, err.Detail)
 	}

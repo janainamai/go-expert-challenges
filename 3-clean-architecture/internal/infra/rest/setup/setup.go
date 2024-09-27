@@ -14,7 +14,7 @@ func InitServer(cfg *configs.Config, resources *resources.Resources) {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
-	r.Post("/order", resources.SaveOrderRestHandler.Create)
+	r.Post("/order", resources.CreateOrderRestHandler.Create)
 	r.Get("/order", resources.ListOrdersRestHandler.List)
 
 	fmt.Printf("REST Server - Listening on port: %s\n", cfg.RestServer.Port)

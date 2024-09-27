@@ -11,18 +11,18 @@ import (
 )
 
 type (
-	gatewaySave struct {
-		mysql mysql.SaveOrderMySQL
+	gatewayCreate struct {
+		saveOrderMySQL mysql.SaveOrderMySQL
 	}
 )
 
-func NewSaveOrderGateway(mysql mysql.SaveOrderMySQL) usecase.SaveOrderInfraInterface {
-	return &gatewaySave{
-		mysql: mysql,
+func NewCreateOrderGateway(saveOrderMySQL mysql.SaveOrderMySQL) usecase.CreateOrderInfraInterface {
+	return &gatewayCreate{
+		saveOrderMySQL: saveOrderMySQL,
 	}
 }
 
-func (i *gatewaySave) Save(ctx context.Context, order *domain.Order) *dto.Error {
+func (i *gatewayCreate) Create(ctx context.Context, order *domain.Order) *dto.Error {
 
 	entity := entity.Order{
 		ID:         order.ID,
@@ -30,5 +30,5 @@ func (i *gatewaySave) Save(ctx context.Context, order *domain.Order) *dto.Error 
 		Tax:        order.Tax,
 		FinalPrice: order.FinalPrice,
 	}
-	return i.mysql.Save(ctx, &entity)
+	return i.saveOrderMySQL.Save(ctx, &entity)
 }

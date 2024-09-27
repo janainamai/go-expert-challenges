@@ -9,26 +9,26 @@ import (
 )
 
 type (
-	SaveOrderUseCaseInterface interface {
-		Save(ctx context.Context, order *domain.Order) (*domain.Order, *dto.Error)
+	CreateOrderUseCaseInterface interface {
+		Create(ctx context.Context, order *domain.Order) (*domain.Order, *dto.Error)
 	}
 
-	SaveOrderInfraInterface interface {
-		Save(ctx context.Context, order *domain.Order) *dto.Error
+	CreateOrderInfraInterface interface {
+		Create(ctx context.Context, order *domain.Order) *dto.Error
 	}
 
-	usecaseSave struct {
-		infraInterface SaveOrderInfraInterface
+	useCaseCreate struct {
+		infraInterface CreateOrderInfraInterface
 	}
 )
 
-func NewSaveOrderUseCase(infra SaveOrderInfraInterface) SaveOrderUseCaseInterface {
-	return &usecaseSave{
+func NewCreateOrderUseCase(infra CreateOrderInfraInterface) CreateOrderUseCaseInterface {
+	return &useCaseCreate{
 		infraInterface: infra,
 	}
 }
 
-func (u *usecaseSave) Save(ctx context.Context, order *domain.Order) (*domain.Order, *dto.Error) {
+func (u *useCaseCreate) Create(ctx context.Context, order *domain.Order) (*domain.Order, *dto.Error) {
 	err := u.validateRequest(order)
 	if err != nil {
 		return nil, dto.NewError("invalid_request", err.GetDetail())
@@ -37,15 +37,15 @@ func (u *usecaseSave) Save(ctx context.Context, order *domain.Order) (*domain.Or
 	order.ID = uuid.NewString()
 	order.FinalPrice = order.Price + order.Tax
 
-	err = u.infraInterface.Save(ctx, order)
+	err = u.infraInterface.Create(ctx, order)
 	if err != nil {
-		return nil, dto.NewError("unexpected_error", "error saving order")
+		return nil, dto.NewError("unexpected_error", "error creating order")
 	}
 
 	return order, nil
 }
 
-func (u *usecaseSave) validateRequest(order *domain.Order) *dto.Error {
+func (u *useCaseCreate) validateRequest(order *domain.Order) *dto.Error {
 	if order.Price <= 0 {
 		return dto.InitError().WithDetail("invalid price")
 	}

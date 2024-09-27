@@ -13,45 +13,45 @@ import (
 
 type (
 	Resources struct {
-		SaveOrderRestHandler  rest.SaveOrderRestHandler
-		ListOrdersRestHandler rest.ListOrdersRestHandler
+		CreateOrderRestHandler rest.CreateOrderRestHandler
+		ListOrdersRestHandler  rest.ListOrdersRestHandler
 
 		OrderGrpcService pb.OrderServiceServer
 
-		SaveOrderUseCase  usecase.SaveOrderUseCaseInterface
-		ListOrdersUseCase usecase.ListOrdersUseCaseInterface
+		CreateOrderUseCase usecase.CreateOrderUseCaseInterface
+		ListOrdersUseCase  usecase.ListOrdersUseCaseInterface
 	}
 )
 
 func LoadResources(cfg *configs.Config) *Resources {
 
-	// infra mysql
+	// infra out: mysql
 	mysqlConnector := setupMySQL.NewMySQLConnector(cfg)
 	saveOrderMySQL := mysql.NewSaveOrderMySQL(mysqlConnector)
 	listOrdersMySQL := mysql.NewListOrdersMySQL(mysqlConnector)
 
-	// gateway
-	saveOrderGateway := gateway.NewSaveOrderGateway(saveOrderMySQL)
+	// gateway usecase
+	createOrderGateway := gateway.NewCreateOrderGateway(saveOrderMySQL)
 	listOrdersGateway := gateway.NewListOrdersGateway(listOrdersMySQL)
 
 	// usecase
-	saveOrderUseCase := usecase.NewSaveOrderUseCase(saveOrderGateway)
+	createOrderUseCase := usecase.NewCreateOrderUseCase(createOrderGateway)
 	listOrdersUseCase := usecase.NewListOrdersUseCase(listOrdersGateway)
 
-	// infra rest
-	saveOrderRest := rest.NewSaveOrderRestHandler(saveOrderUseCase)
+	// infra in: rest
+	createOrderRest := rest.NewCreateOrderRestHandler(createOrderUseCase)
 	listOrdersRest := rest.NewListOrdersRestHandler(listOrdersUseCase)
 
-	// infra grpc
-	orderGrpc := service.NewOrdeGrpcService(saveOrderUseCase, listOrdersUseCase)
+	// infra in: grpc
+	orderGrpc := service.NewOrdeGrpcService(createOrderUseCase, listOrdersUseCase)
 
 	return &Resources{
-		SaveOrderRestHandler:  *saveOrderRest,
-		ListOrdersRestHandler: *listOrdersRest,
+		CreateOrderRestHandler: *createOrderRest,
+		ListOrdersRestHandler:  *listOrdersRest,
 
 		OrderGrpcService: orderGrpc,
 
-		SaveOrderUseCase:  saveOrderUseCase,
-		ListOrdersUseCase: listOrdersUseCase,
+		CreateOrderUseCase: createOrderUseCase,
+		ListOrdersUseCase:  listOrdersUseCase,
 	}
 }

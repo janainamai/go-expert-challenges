@@ -7,6 +7,6 @@ import "github.com/janainamai/go-expert-challenges/3-clean-architecture/internal
 // It serves as dependency injection for your app, add any dependencies you require here.
 
 type Resolver struct {
-	SaveOrderUseCase  usecase.SaveOrderUseCaseInterface
-	ListOrdersUseCase usecase.ListOrdersUseCaseInterface
+	CreateOrderUseCase usecase.CreateOrderUseCaseInterface
+	ListOrdersUseCase  usecase.ListOrdersUseCaseInterface
 }

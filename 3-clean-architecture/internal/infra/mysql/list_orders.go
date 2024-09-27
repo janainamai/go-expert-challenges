@@ -26,7 +26,7 @@ func NewListOrdersMySQL(mysql *setup.MySQL) ListOrdersMySQL {
 }
 
 func (i *listOrdersMySQL) List(ctx context.Context) ([]*entity.Order, *dto.Error) {
-	rows, err := i.mysql.Db.Query("SELECT id, price, tax, final_price FROM orders")
+	rows, err := i.mysql.DB.Query("SELECT id, price, tax, final_price FROM orders")
 	if err != nil {
 		return nil, dto.InitError().WithDetail(err.Error())
 	}

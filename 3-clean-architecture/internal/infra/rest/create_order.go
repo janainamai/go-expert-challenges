@@ -11,16 +11,16 @@ import (
 )
 
 type (
-	SaveOrderRestHandler struct {
-		usecase usecase.SaveOrderUseCaseInterface
+	CreateOrderRestHandler struct {
+		usecase usecase.CreateOrderUseCaseInterface
 	}
 
-	SaveOrderInput struct {
+	CreateOrderInput struct {
 		Price float64
 		Tax   float64
 	}
 
-	SaveOrderOutput struct {
+	CreateOrderOutput struct {
 		ID         string
 		Price      float64
 		Tax        float64
@@ -28,14 +28,14 @@ type (
 	}
 )
 
-func NewSaveOrderRestHandler(usecase usecase.SaveOrderUseCaseInterface) *SaveOrderRestHandler {
-	return &SaveOrderRestHandler{
+func NewCreateOrderRestHandler(usecase usecase.CreateOrderUseCaseInterface) *CreateOrderRestHandler {
+	return &CreateOrderRestHandler{
 		usecase: usecase,
 	}
 }
 
-func (h *SaveOrderRestHandler) Create(w http.ResponseWriter, r *http.Request) {
-	var input SaveOrderInput
+func (h *CreateOrderRestHandler) Create(w http.ResponseWriter, r *http.Request) {
+	var input CreateOrderInput
 	err := json.NewDecoder(r.Body).Decode(&input)
 	if err != nil {
 		response := dto.NewError("error decoding json", err.Error())
@@ -49,7 +49,7 @@ func (h *SaveOrderRestHandler) Create(w http.ResponseWriter, r *http.Request) {
 		Tax:   input.Tax,
 	}
 
-	order, errDto := h.usecase.Save(r.Context(), &domain)
+	order, errDto := h.usecase.Create(r.Context(), &domain)
 	if errDto != nil {
 		if errDto.GetTitle() == "invalid_request" {
 			w.WriteHeader(http.StatusBadRequest)
@@ -62,7 +62,7 @@ func (h *SaveOrderRestHandler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	output := SaveOrderOutput{
+	output := CreateOrderOutput{
 		ID:         order.ID,
 		Price:      order.Price,
 		Tax:        order.Tax,

@@ -13,8 +13,8 @@ import (
 
 func InitServer(cfg *configs.Config, resources *resources.Resources) {
 	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
-		SaveOrderUseCase:  resources.SaveOrderUseCase,
-		ListOrdersUseCase: resources.ListOrdersUseCase,
+		CreateOrderUseCase: resources.CreateOrderUseCase,
+		ListOrdersUseCase:  resources.ListOrdersUseCase,
 	}}))
 
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))

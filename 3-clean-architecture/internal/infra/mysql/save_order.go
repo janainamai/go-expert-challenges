@@ -25,7 +25,7 @@ func NewSaveOrderMySQL(mysql *setup.MySQL) SaveOrderMySQL {
 }
 
 func (i *saveOrderMySQL) Save(ctx context.Context, order *entity.Order) *dto.Error {
-	stmt, err := i.mysql.Db.Prepare("INSERT INTO orders (id, price, tax, final_price) VALUES (?, ?, ?, ?)")
+	stmt, err := i.mysql.DB.Prepare("INSERT INTO orders (id, price, tax, final_price) VALUES (?, ?, ?, ?)")
 	if err != nil {
 		return dto.InitError().WithDetail(err.Error())
 	}

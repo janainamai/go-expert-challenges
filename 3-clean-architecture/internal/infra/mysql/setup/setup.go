@@ -14,7 +14,7 @@ import (
 
 type (
 	MySQL struct {
-		Db *sql.DB
+		DB *sql.DB
 	}
 )
 
@@ -34,7 +34,7 @@ func NewMySQLConnector(cfg *configs.Config) *MySQL {
 
 	runMigrations(cfg)
 
-	return &MySQL{Db: db}
+	return &MySQL{DB: db}
 }
 
 func runMigrations(cfg *configs.Config) {
