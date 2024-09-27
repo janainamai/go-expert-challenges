@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS orders (
+	id CHAR(36) PRIMARY KEY,
+	price DOUBLE NOT NULL,
+	tax DOUBLE NOT NULL,
+	final_price DOUBLE NOT NULL
+);
