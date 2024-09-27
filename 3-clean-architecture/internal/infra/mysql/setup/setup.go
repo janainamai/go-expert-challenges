@@ -29,7 +29,7 @@ func NewMySQLConnector(cfg *configs.Config) *MySQL {
 	}
 
 	if err := db.Ping(); err != nil {
-		panic(fmt.Sprintf("Erro ao verificar a conexão: %s", err))
+		panic(fmt.Sprintf("Error while pinging MySQL database: %s", err))
 	}
 
 	runMigrations(cfg)
