@@ -13,7 +13,7 @@ Esta listagem precisa ser feita com:
 - Para a criação do banco de dados, utilize o Docker (Dockerfile / docker-compose.yaml), com isso ao rodar o comando docker compose up tudo deverá subir, preparando o banco de dados.
 - Inclua um README.md com os passos a serem executados no desafio e a porta em que a aplicação deverá responder em cada serviço.
 
-## Como executar o projeto:
+## Como executar o projeto
 Certifique-se de ter o docker executando em sua máquina.
 
 Execute via terminal o arquivo docker: `docker-compose up -d`
@@ -48,6 +48,6 @@ Acessar GraphQL Playgroud no navegador `http://localhost:8080/`
 
 ## Instruções para o desenvolvedor
 
-Para gerar código grpc, executar no terminal: `make protoc-gen`
+Para gerar código grpc, executar no terminal: `make grpc-gen`
 
 Para gerar código graphql, executar no terminal: `make graph-gen`
