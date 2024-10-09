@@ -15,17 +15,17 @@ type (
 
 func (o *Order) Validate() *dto.Error {
 	if o.ID == "" {
-		err := dto.InitError().WithDetail("invalid id")
+		err := dto.InitError().WithDetail("id is required")
 
 		return err
 	}
 
 	if o.Price <= 0 {
-		return dto.InitError().WithDetail("invalid price")
+		return dto.InitError().WithDetail("price must be greater then zero")
 	}
 
 	if o.Tax <= 0 {
-		return dto.InitError().WithDetail("invalid tax")
+		return dto.InitError().WithDetail("tax must be greater then zero")
 	}
 
 	return nil

@@ -47,11 +47,11 @@ func (u *useCaseCreate) Create(ctx context.Context, order *domain.Order) (*domai
 
 func (u *useCaseCreate) validateRequest(order *domain.Order) *dto.Error {
 	if order.Price <= 0 {
-		return dto.InitError().WithDetail("invalid price")
+		return dto.InitError().WithDetail("price must be greater then zero")
 	}
 
 	if order.Tax <= 0 {
-		return dto.InitError().WithDetail("invalid tax")
+		return dto.InitError().WithDetail("tax must be greater then zero")
 	}
 
 	return nil
