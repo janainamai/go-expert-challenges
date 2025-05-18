@@ -1,0 +1,8 @@
+### Cenário: Requisição válida
+GET http://localhost:8080/temperature?zipcode=06233903
+
+### Cenário: Payload inválido
+GET http://localhost:8080/temperature?zipcode=123
+
+### Cenário: Zipcode não encontrado
+GET http://localhost:8080/temperature?zipcode=00000000
