@@ -44,8 +44,10 @@ Execute o projeto via terminal: `go run cmd/app/main.go`
 Servidores disponíveis
 - HTTP: 8000
 
-## Como acessar os servidores
+## Como executar as requisições
 
 ### Rest http
 Executar as requisições utilizando o arquivo `rest.http` que se encontra na pasta `test`.
 
+## Como testar o serviço no cloud run
+https://labs-temperature-534419467934.us-central1.run.app/temperature?zipcode=06233903
